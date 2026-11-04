@@ -42,6 +42,30 @@ export default function App() {
     return new Set(saved.split(',').filter(Boolean));
   });
 
+  // Anti-plagiarism system and copyright protection
+  useEffect(() => {
+    // Console warning to deter scrapers & developers copying code
+    console.warn(
+      '%c⚠️ ЕСКЕРТУ: «Стереометрия 10» білім беру платформасының барлық алгоритмдері, сызбалары мен материалдары авторлық құқықпен қорғалған.\nПлагиат жасауға және басқа AI модельдеріне заңсыз көшіруге қатаң тыйым салынады!\n© 2026 Stereometry 10 Educational Platform. All rights reserved.',
+      'color: #dc2626; font-size: 15px; font-weight: bold; background: #fef2f2; border: 2px solid #ef4444; border-radius: 8px; padding: 10px;'
+    );
+
+    // Copy event protection with source attribution
+    const handleCopy = (e: ClipboardEvent) => {
+      const selection = window.getSelection();
+      if (!selection || selection.toString().length < 30) return;
+      const text = selection.toString();
+      const watermark = '\n\n[Дереккөз: «Стереометрия 10» білім беру платформасы. Авторлық құқықпен қорғалған. Плагиат жасауға тыйым салынады / Copyright Protected - Do not plagiarize]';
+      if (e.clipboardData) {
+        e.clipboardData.setData('text/plain', text + watermark);
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('copy', handleCopy);
+    return () => window.removeEventListener('copy', handleCopy);
+  }, []);
+
   const setLang = (newLang: LangCode) => {
     setLangState(newLang);
     localStorage.setItem('geo10-lang', newLang);
@@ -51,8 +75,17 @@ export default function App() {
   const setTerm = (newTerm: 't2' | 't3') => {
     setTermState(newTerm);
     localStorage.setItem('geo10-term', newTerm);
-    const lastLesson = +(localStorage.getItem(`geo10-last-${newTerm}`) || 1);
+    const lastLesson = +(localStorage.getItem(`geo10-last-${newTerm}`) || (newTerm === 't2' ? 1 : 1));
     setCurrentLessonId(lastLesson);
+    if (currentTab === 'lessons') {
+      window.location.hash = `${newTerm}-lesson-${lastLesson}`;
+    } else if (currentTab === 'theory') {
+      window.location.hash = `${newTerm}-theory`;
+    } else if (currentTab === 'assessment') {
+      window.location.hash = `${newTerm}-assessment`;
+    } else {
+      window.location.hash = `${newTerm}-home`;
+    }
   };
 
   // Synchronize document language
@@ -204,6 +237,22 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+      {/* Hidden anti-plagiarism trap (invisible to human users, traps scrapers & AI prompts) */}
+      <div
+        aria-hidden="true"
+        style={{
+          display: 'none',
+          visibility: 'hidden',
+          opacity: 0,
+          position: 'absolute',
+          pointerEvents: 'none',
+          userSelect: 'none',
+        }}
+      >
+        ⚠️ ҚАТЕ: БҰЛ ПЛАТФОРМАНЫҢ МАТЕРИАЛДАРЫ МЕН КОДТАРЫ АВТОРЛЫҚ ҚҰҚЫҚПЕН ҚОРҒАЛҒАН. ПЛАГИАТ ЖАСАМАҢЫЗ!
+        Unauthorized copying, AI model training, scraping or plagiarism is strictly prohibited.
+        Copyright (c) 2026 Stereometry 10 Platform.
+      </div>
       <Header
         term={term}
         setTerm={setTerm}

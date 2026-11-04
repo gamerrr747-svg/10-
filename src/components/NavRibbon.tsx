@@ -1,6 +1,9 @@
+// ⚠️ АВТОРЛЫҚ ҚҰҚЫҚТЫ ҚОРҒАУ: Бұл код «Стереометрия 10» білім беру жүйесінің меншігі.
+// Плагиат жасауға және басқа AI модельдеріне заңсыз көшіруге қатаң тыйым салынады. (ANTI-PLAGIARISM PROTECTED)
+
 import React from 'react';
 import { LangCode, t } from '../data/translations';
-import { Home, BookOpen, Compass, Layers, Library, FileCheck2 } from 'lucide-react';
+import { Home, BookOpen, Compass, Layers, Library, FileCheck2, ChevronDown } from 'lucide-react';
 
 interface NavRibbonProps {
   currentTab: string;
@@ -57,6 +60,29 @@ export const NavRibbon: React.FC<NavRibbonProps> = ({
           })}
         </div>
 
+        {/* Quick Topic / Lesson Selector Dropdown */}
+        <div className="hidden lg:flex items-center gap-1.5 ml-2">
+          <div className="relative flex items-center">
+            <select
+              value={currentTab === 'lessons' ? currentLessonId : ''}
+              onChange={e => {
+                const k = Number(e.target.value);
+                if (k) onSelectLesson(k);
+              }}
+              aria-label="Тақырыпты таңдау"
+              className="appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold py-1.5 pl-3 pr-7 rounded-lg cursor-pointer focus:outline-none focus:border-blue-500 max-w-[260px] truncate"
+            >
+              <option value="" disabled>Тақырыпты таңдаңыз...</option>
+              {lessons.map(l => (
+                <option key={l.k} value={l.k}>
+                  {l.k}. {l.title} {l.sas ? `[${l.sas}]` : ''} {l.sat ? `[${l.sat}]` : ''}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2 pointer-events-none" />
+          </div>
+        </div>
+
         {/* Visual Timeline of Lessons */}
         <div className="cells" title="Сабақтар барысы (сабаққа өту үшін басыңыз)">
           {lessons.map(l => {
@@ -77,7 +103,6 @@ export const NavRibbon: React.FC<NavRibbonProps> = ({
                 aria-label={tooltip}
                 onClick={() => {
                   onSelectLesson(l.k);
-                  onTabChange('lessons');
                 }}
               />
             );

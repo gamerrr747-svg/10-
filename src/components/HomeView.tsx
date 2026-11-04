@@ -278,31 +278,57 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </div>
 
-      {/* 6-Stage Lesson Cycle Visualization */}
+      {/* 6-Stage Pedagogical Lesson Cycle */}
       <div>
-        <h3 className="section-title">{t(lang, 'howRuns')}</h3>
-        <div className="cycle">
-          {cycleData.map((c, i) => (
-            <div key={i} className="hover:bg-blue-50/40 transition-colors">
-              <b>{String(i + 1).padStart(2, '0')} · {c[0]}</b>
-              <h4>{c[1]}</h4>
-              <p>{c[2]}</p>
-            </div>
-          ))}
+        <h3 className="section-title">Әр сабақтың 6 кезеңдік әдістемелік жүйесі</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 my-4">
+          <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
+            <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded">01-КЕЗЕҢ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Ой қозғау (Белсендіру)</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Көкейтесті өмірлік сұрақ немесе өткен сабақпен байланыс орнату арқылы жаңа тақырыпқа қызығушылық ояту.</p>
+          </div>
+          <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
+            <span className="font-mono text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded">02-КЕЗЕҢ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Зерттеу (CPA моделі)</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Нақты заттық тәжірибеден 3D бейнелік кеңістіктік сызбаға және таңбалық математикалық модельге біртіндеп көшу.</p>
+          </div>
+          <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
+            <span className="font-mono text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded">03-КЕЗЕҢ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Түйінді теория мен дәлелдеу</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Негізгі аксиомалар, теоремалар және олардың кеңістіктік дәлелдемелері. Қатаң математикалық негіздеме.</p>
+          </div>
+          <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
+            <span className="font-mono text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded">04-КЕЗЕҢ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Үлгі есептерді талдау</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">«Мен жасаймын» және «Бірге жасаймыз» үлгілері. Шешімнің әрбір қадамы 3D сызбасымен байланыстырылады.</p>
+          </div>
+          <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
+            <span className="font-mono text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded">05-КЕЗЕҢ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Деңгейлік жаттығулар</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">А (негізгі дағды), В (пайымдау/қолдану), С (күрделі зерттеу) деңгейлері. Автоматты сандық жауап тексеру.</p>
+          </div>
+          <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
+            <span className="font-mono text-xs font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded">06-КЕЗЕҢ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Қорытындылау және рефлексия</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Шығу парағы (Exit ticket) тапсырмалары және түйінді сұрақтар бойынша өзін-өзі бағалау.</p>
+          </div>
         </div>
       </div>
 
-      {/* Lesson Plan Matrix */}
+      {/* Lesson Plan Matrix (Textbook Removed, Objectives & Criteria Included) */}
       <div>
-        <h3 className="section-title">{t(lang, 'plan')}</h3>
-        <div className="tbl shadow-xs">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="section-title m-0">{t(lang, 'plan')} (Күнтізбелік-тақырыптық жоспар)</h3>
+          <span className="text-xs font-mono text-slate-500">Барлығы: {lessons.length} сабақ</span>
+        </div>
+        <div className="tbl shadow-xs bg-white">
           <table className="plan">
             <thead>
               <tr>
-                <th className="w-20">{t(lang, 'no')}</th>
-                <th>{t(lang, 'lesson')}</th>
-                <th>{t(lang, 'objectives')}</th>
-                <th className="w-32">{t(lang, 'textbook')}</th>
+                <th className="w-16 text-center">№</th>
+                <th className="w-64">Сабақ тақырыбы</th>
+                <th>Оқу бағдарламасының мақсаттары (LO)</th>
+                <th className="w-64">Табыс критерийлері (Күтілетін нәтиже)</th>
                 <th className="w-16 text-center">Күйі</th>
               </tr>
             </thead>
@@ -313,29 +339,41 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <tr
                     key={l.k}
                     onClick={() => onSelectLesson(l.k)}
-                    className="hover:bg-blue-50/50 transition-colors cursor-pointer"
+                    className="hover:bg-blue-50/60 transition-colors cursor-pointer"
                   >
-                    <td>
-                      <span className="font-mono font-bold text-slate-500">
+                    <td className="text-center">
+                      <span className="font-mono font-bold text-slate-900 text-sm">
                         {l.k}
                       </span>
-                      <span className="text-slate-400 text-xs ml-1">/ {l.n}</span>
+                      <div className="text-slate-400 text-[10px] font-mono">№{l.n}</div>
                     </td>
                     <td>
-                      <div className="font-semibold text-slate-900 flex items-center gap-2">
-                        <span>{l.title}</span>
-                        {(l.sas || l.sat) && (
-                          <span className="chip dark text-[10px] py-0.5 px-1.5">
-                            {l.sas || l.sat}
-                          </span>
-                        )}
+                      <div className="font-semibold text-slate-900 text-sm leading-snug">
+                        {l.title}
                       </div>
+                      {(l.sas || l.sat) && (
+                        <span className="chip dark text-[10px] py-0.5 px-1.5 mt-1 inline-block">
+                          {l.sas || l.sat}
+                        </span>
+                      )}
                     </td>
-                    <td className="text-xs font-mono text-slate-600">
-                      {(l.obj || []).map((o: string) => o.split(' ')[0]).join(', ')}
+                    <td className="text-xs text-slate-700 leading-relaxed">
+                      {(l.obj || []).map((o: string, idx: number) => (
+                        <div key={idx} className="mb-1 flex items-start gap-1.5">
+                          <span className="text-blue-600 font-bold font-mono shrink-0">
+                            {o.split(' ')[0]}
+                          </span>
+                          <span>{o.split(' ').slice(1).join(' ')}</span>
+                        </div>
+                      ))}
                     </td>
-                    <td className="text-xs text-slate-500 font-mono">
-                      {l.book ? l.book.pages : '—'}
+                    <td className="text-xs text-slate-600 leading-snug">
+                      {(l.sc || []).slice(0, 2).map((c: string, idx: number) => (
+                        <div key={idx} className="mb-1 flex items-start gap-1">
+                          <span className="text-emerald-600 font-bold">•</span>
+                          <span dangerouslySetInnerHTML={{ __html: c }} />
+                        </div>
+                      ))}
                     </td>
                     <td className="text-center">
                       {isTaught ? (
