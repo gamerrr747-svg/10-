@@ -12,6 +12,7 @@ import { LabsView } from './components/LabsView';
 import { TheoryView } from './components/TheoryView';
 import { AssessmentView } from './components/AssessmentView';
 import { PresentModal } from './components/PresentModal';
+import { TERM3_UNITS_TR, TERM3_LESSONS_TR } from './data/term3Translations';
 
 export default function App() {
   const [lang, setLangState] = useState<LangCode>(() => {
@@ -88,18 +89,70 @@ export default function App() {
     }
   };
 
-  // Synchronize document language
+  // Synchronize document language and dynamic font theme
   useEffect(() => {
     document.documentElement.lang = lang === 'kz' ? 'kk' : lang;
+    document.documentElement.setAttribute('data-lang', lang);
   }, [lang]);
 
   // Current term data with trilingual support
   const activeTermData = useMemo(() => {
+    const rawTerm = (curriculumData as any).terms[term];
+
+    // If Term 3, merge our rich trilingual Term 3 translations
+    if (term === 't3' && lang !== 'en') {
+      const unitsTr = (TERM3_UNITS_TR as any)[lang] || rawTerm.units;
+      const lessonTrMap = (TERM3_LESSONS_TR as any)[lang] || {};
+
+      const localizedLessons = (rawTerm.lessons || []).map((l: any) => {
+        const itemTr = lessonTrMap[l.k];
+        if (!itemTr) return l;
+        return {
+          ...l,
+          title: itemTr.title || l.title,
+          obj: itemTr.obj || l.obj,
+          aim: itemTr.aim || l.aim,
+          sc: itemTr.sc || l.sc,
+          hook: itemTr.hook || l.hook,
+          key: itemTr.keyHtml || l.key,
+          mis: itemTr.misconceptions?.wrong || l.mis,
+        };
+      });
+
+      const termTitles = {
+        kz: {
+          short: '3-тоқсан',
+          eyebrow: 'Геометрия · 10-сынып · 3-тоқсан · 33–52-сабақтар',
+          title: 'Кеңістіктегі <span>координаталар мен векторлар</span>',
+          sub: '20 интерактивті сабақ, БЖБ 3, БЖБ 4 және ТЖБ 3. Декарттық координаталар, векторлардың сызықтық комбинациялары және арақашықтықтар.',
+          ovTitle: 'Кеңістіктегі векторлар мен координаталар',
+          ovLead: 'Бұл бөлімде кеңістіктік геометрия координаталық тәсілмен біріктіріледі: нүктелер (x; y; z), векторларға амалдар қолдану, коллинеарлық пен компланарлық, кесіндіні бөлу және фигуралардың диагональдары.',
+        },
+        ru: {
+          short: '3 четверть',
+          eyebrow: 'Геометрия · 10 класс · 3 четверть · уроки 33–52',
+          title: 'Координаты и векторы <span>в пространстве</span>',
+          sub: '20 уроков, СОР 3, СОР 4 и СОЧ 3. Декартовы координаты, линейные комбинации векторов и расстояния в пространстве.',
+          ovTitle: 'Векторы и координаты в пространстве',
+          ovLead: 'Пространственная геометрия объединяется с аналитическим методом: координаты точек (x; y; z), действия над векторами, коллинеарность, компланарность и деление отрезка.',
+        },
+      };
+
+      const customTitle = (termTitles as any)[lang] || {};
+
+      return {
+        ...rawTerm,
+        ...customTitle,
+        units: unitsTr,
+        lessons: localizedLessons,
+      };
+    }
+
     const tr = (curriculumData as any).tr;
     if (lang !== 'en' && tr && tr[lang] && tr[lang][term]) {
       return tr[lang][term];
     }
-    return (curriculumData as any).terms[term];
+    return rawTerm;
   }, [term, lang]);
 
   // Assessments for current term

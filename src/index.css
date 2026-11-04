@@ -21,10 +21,26 @@
   --u3: #dc2626; --u3s: #fef2f2;
   --good: #059669; --good-s: #ecfdf5;
   --warn: #d97706; --warn-s: #fffbeb;
-  --f-display: "Plus Jakarta Sans", "Familjen Grotesk", system-ui, sans-serif;
-  --f-body: "Plus Jakarta Sans", "Source Sans 3", system-ui, sans-serif;
+  --f-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --f-body: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
   color-scheme: light;
+}
+
+/* 3 тілге 3 түрлі арнайы бейімделген қаріптер (Typography per Language) */
+html[data-lang="kz"] {
+  --f-display: "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+  --f-body: "Inter", "Plus Jakarta Sans", -apple-system, sans-serif;
+}
+
+html[data-lang="ru"] {
+  --f-display: "Rubik", "Inter", system-ui, sans-serif;
+  --f-body: "Rubik", "Roboto", system-ui, sans-serif;
+}
+
+html[data-lang="en"] {
+  --f-display: "Outfit", "Plus Jakarta Sans", system-ui, sans-serif;
+  --f-body: "Outfit", "Inter", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }

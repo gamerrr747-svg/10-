@@ -280,37 +280,37 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
       {/* 6-Stage Pedagogical Lesson Cycle */}
       <div>
-        <h3 className="section-title">Әр сабақтың 6 кезеңдік әдістемелік жүйесі</h3>
+        <h3 className="section-title">Әр сабақтың 6 беттік заманауи модульдік әдістемесі</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 my-4">
           <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
-            <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded">01-КЕЗЕҢ</span>
-            <h4 className="font-bold text-slate-900 mt-2 text-base">Ой қозғау (Белсендіру)</h4>
-            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Көкейтесті өмірлік сұрақ немесе өткен сабақпен байланыс орнату арқылы жаңа тақырыпқа қызығушылық ояту.</p>
+            <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded">01-БЕТ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Сабақ төлқұжаты & Құндылықтар</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Оқу мақсаттары, жетістік критерийлері, мектеп құндылықтары (академиялық адалдық, сыни ойлау) және ой қозғау сұрағы.</p>
           </div>
           <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
-            <span className="font-mono text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded">02-КЕЗЕҢ</span>
-            <h4 className="font-bold text-slate-900 mt-2 text-base">Зерттеу (CPA моделі)</h4>
-            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Нақты заттық тәжірибеден 3D бейнелік кеңістіктік сызбаға және таңбалық математикалық модельге біртіндеп көшу.</p>
+            <span className="font-mono text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded">02-БЕТ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Түйінді теория & Әлемдік әдістер</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Формулалар мен теоремалар, Фейнман техникасы (қарапайым тілмен), Dual Coding (сөз бен сызба) және CPA моделі.</p>
           </div>
           <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
-            <span className="font-mono text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded">03-КЕЗЕҢ</span>
-            <h4 className="font-bold text-slate-900 mt-2 text-base">Түйінді теория мен дәлелдеу</h4>
-            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Негізгі аксиомалар, теоремалар және олардың кеңістіктік дәлелдемелері. Қатаң математикалық негіздеме.</p>
+            <span className="font-mono text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded">03-БЕТ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Мысалдар мен 3D Сызбалар</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">«I DO: мұғалім үлгісі» және «WE DO: бірге талдау». Түрлі-түсті 3D интерактивті кеңістіктік сызбалар.</p>
           </div>
           <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
-            <span className="font-mono text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded">04-КЕЗЕҢ</span>
-            <h4 className="font-bold text-slate-900 mt-2 text-base">Үлгі есептерді талдау</h4>
-            <p className="text-xs text-slate-600 mt-1 leading-relaxed">«Мен жасаймын» және «Бірге жасаймыз» үлгілері. Шешімнің әрбір қадамы 3D сызбасымен байланыстырылады.</p>
+            <span className="font-mono text-xs font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded">04-БЕТ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Қатемен жұмыс (Error Analysis)</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Типтік жаңылыстар «Неге бұлай істеуге болмайды?» және интерактивті «Қатені тап және түзет!» жаттығулары.</p>
           </div>
           <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
-            <span className="font-mono text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded">05-КЕЗЕҢ</span>
-            <h4 className="font-bold text-slate-900 mt-2 text-base">Деңгейлік жаттығулар</h4>
-            <p className="text-xs text-slate-600 mt-1 leading-relaxed">А (негізгі дағды), В (пайымдау/қолдану), С (күрделі зерттеу) деңгейлері. Автоматты сандық жауап тексеру.</p>
+            <span className="font-mono text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded">05-БЕТ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Практика & PISA тапсырмалары</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">A, B, C сараланған деңгейлік есептер, автоматты сандық жауап тексеру және өмірмен байланысты PISA/қолданбалы есептер.</p>
           </div>
           <div className="p-4 bg-white border border-slate-200/90 rounded-xl shadow-2xs">
-            <span className="font-mono text-xs font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded">06-КЕЗЕҢ</span>
-            <h4 className="font-bold text-slate-900 mt-2 text-base">Қорытындылау және рефлексия</h4>
-            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Шығу парағы (Exit ticket) тапсырмалары және түйінді сұрақтар бойынша өзін-өзі бағалау.</p>
+            <span className="font-mono text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded">06-БЕТ</span>
+            <h4 className="font-bold text-slate-900 mt-2 text-base">Рефлексия, Квиз & Шығу парағы</h4>
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">Экспресс-тест (Exit ticket), 3 деңгейлі өзін-өзі бағалау шкаласы және сабақтың түйінді рефлексиясы.</p>
           </div>
         </div>
       </div>
