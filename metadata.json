@@ -1,0 +1,6 @@
+{
+  "name": "Geometry 10 · Terms 2–3",
+  "description": "Grade 10 Geometry educational platform for Terms 2 & 3: Perpendicularity in Space, Coordinates & Vectors, interactive 3D labs, step-by-step proofs, 3D Graphing Studio, and summative assessments.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
